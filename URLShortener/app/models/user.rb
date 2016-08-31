@@ -18,4 +18,18 @@ class User < ActiveRecord::Base
     foreign_key: :user_id
   )
 
+  has_many(
+    :visits,
+    class_name: "Visit",
+    primary_key: :id,
+    foreign_key: :user_id
+  )
+
+  has_many(
+    :visited_urls,
+    Proc.new { distinct },
+    through: :visits,
+    source: :visited_url
+  )
+
 end
