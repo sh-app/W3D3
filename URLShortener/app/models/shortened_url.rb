@@ -44,7 +44,7 @@ class ShortenedUrl < ActiveRecord::Base
     while exists?(short_url: short)
       short = random_code
     end
-    create(short_url: short, long_url: long_url, user_id: user)
+    create!(short_url: short, long_url: long_url, user_id: user.id)
   end
 
 
